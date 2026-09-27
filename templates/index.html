@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md. Suruj Hossain — Assistant Programmer</title>
+<meta name="description" content="Md. Suruj Hossain — Assistant Programmer, Office of the Deputy Commissioner, Naogaon. Systems, database and infrastructure engineer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E1620;
+    --bg-raised: #141F2B;
+    --line: #263544;
+    --line-soft: #1B2734;
+    --text: #E9EEF2;
+    --text-dim: #93A5B5;
+    --text-faint: #5C7286;
+    --amber: #E7A13C;
+    --amber-dim: #B8823A;
+    --green: #6FCB9F;
+    --serif: 'Fraunces', serif;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Faint grid backdrop, evokes a rack / schematic without being loud */
+  .grid-field{
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header, main, footer { position: relative; z-index: 1; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 28px 32px;
+    max-width: 1040px;
+    margin: 0 auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  nav .mark{ color: var(--text); font-weight:600; letter-spacing: 0.02em; }
+  nav ul{ list-style:none; display:flex; gap:28px; margin:0; padding:0; }
+  nav a{ text-decoration:none; color: var(--text-dim); transition: color .15s ease; }
+  nav a:hover{ color: var(--amber); }
+  @media (max-width: 640px){ nav ul{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 64px 0 88px;
+    display:grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 860px){ .hero{ grid-template-columns: 1fr; } }
+
+  .role-tag{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--amber);
+    margin: 0 0 18px;
+  }
+  .role-tag::before{
+    content: "●";
+    color: var(--green);
+    font-size: 8px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  h1{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(40px, 5.6vw, 64px);
+    line-height: 1.04;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .avatar{
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--amber-dim);
+    box-shadow: 0 0 0 5px var(--bg-raised);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .role-line{
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--text-dim);
+    margin: 0 0 28px;
+  }
+
+  .bio{
+    font-size: 16.5px;
+    color: var(--text-dim);
+    max-width: 60ch;
+    margin: 0 0 32px;
+  }
+
+  .hero-actions{ display:flex; gap:14px; flex-wrap: wrap; }
+  .btn{
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    display:inline-block;
+    transition: all .15s ease;
+  }
+  .btn-primary{ background: var(--amber); color: #14100A; font-weight: 600; }
+  .btn-primary:hover{ background: #F2B15A; }
+  .btn-ghost{ border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--amber-dim); color: var(--amber); }
+
+  /* status panel */
+  .status-panel{
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 24px;
+    font-family: var(--mono);
+  }
+  .status-head{
+    display:flex; justify-content: space-between; align-items:center;
+    font-size: 11px; color: var(--text-faint);
+    padding-bottom: 14px; margin-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    letter-spacing: 0.03em;
+  }
+  .status-head .dot{ color: var(--green); }
+  .stat-row{
+    display:flex; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 13.5px;
+  }
+  .stat-row:last-child{ border-bottom: none; }
+  .stat-row .k{ color: var(--text-faint); }
+  .stat-row .v{ color: var(--text); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 64px 0; border-top: 1px solid var(--line-soft); }
+  .sec-head{
+    display:flex; align-items:baseline; gap: 14px;
+    margin-bottom: 40px;
+  }
+  .sec-num{ font-family: var(--mono); font-size: 13px; color: var(--amber-dim); }
+  .sec-title{
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 30px);
+    margin: 0;
+  }
+
+  /* ---------- TIMELINE (career + education, genuinely sequential) ---------- */
+  .timeline{ position: relative; padding-left: 28px; }
+  .timeline::before{
+    content:"";
+    position:absolute; left: 5px; top: 6px; bottom: 6px;
+    width: 1px; background: var(--line);
+  }
+  .tl-item{ position: relative; padding-bottom: 36px; }
+  .tl-item:last-child{ padding-bottom: 0; }
+  .tl-item::before{
+    content:"";
+    position: absolute; left: -28px; top: 5px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--amber-dim);
+  }
+  .tl-item.current::before{ border-color: var(--green); }
+  .tl-date{
+    font-family: var(--mono); font-size: 12.5px; color: var(--text-faint);
+    margin-bottom: 4px;
+  }
+  .tl-title{ font-size: 16.5px; font-weight: 600; color: var(--text); margin: 0 0 2px; }
+  .tl-org{ font-size: 14.5px; color: var(--text-dim); margin: 0; }
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+  }
+  @media (max-width: 700px){ .skill-grid{ grid-template-columns: 1fr; } }
+  .skill-cell{ background: var(--bg); padding: 26px 28px; }
+  .skill-cat{
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em;
+    color: var(--amber); margin: 0 0 14px;
+  }
+  .skill-tags{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tags span{
+    font-family: var(--mono); font-size: 12.5px;
+    color: var(--text-dim);
+    border: 1px solid var(--line);
+    padding: 5px 10px; border-radius: 3px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  @media (max-width: 700px){ .contact-grid{ grid-template-columns: 1fr; } }
+  .contact-card{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px;
+    text-decoration:none;
+    display:block;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .contact-card:hover{ border-color: var(--amber-dim); transform: translateY(-2px); }
+  .contact-k{ font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .contact-v{ font-size: 15px; color: var(--text); word-break: break-word; }
+
+  footer{
+    padding: 40px 0 60px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text-faint);
+    display:flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .btn, .contact-card{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-field"></div>
+
+<header>
+  <nav>
+    <span class="mark">Suruj Hossain</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none; padding-top:32px;" id="about">
+    <div>
+      <p class="role-tag">Assistant Programmer</p>
+      <h1>Md. Suruj Hossain</h1>
+      <img class="avatar" src="{{ url_for('static', filename='photo.png') }}" alt="Md. Suruj Hossain">
+      <p class="role-line">Systems &amp; database engineer, now serving in public administration</p>
+      <p class="bio">
+        I work as Assistant Programmer at the Office of the Deputy Commissioner, Naogaon,
+        bringing seven years of hands-on infrastructure experience from the telecom sector
+        into government systems. I graduated with a BSc in Electronics and Communication
+        Engineering from Hajee Mohammad Danesh Science and Technology University in 2017,
+        and spent the years since building and maintaining Linux servers, production
+        databases, and automation for large-scale telecom operations.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/md-suruj-hossain-89936418a/" target="_blank" rel="noopener">View LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <div class="status-head">
+        <span><span class="dot">●</span> profile.status</span>
+        <span>NAOGAON, BD</span>
+      </div>
+      <div class="stat-row"><span class="k">role</span><span class="v">Assistant Programmer</span></div>
+      <div class="stat-row"><span class="k">office</span><span class="v">DC Office, Naogaon</span></div>
+      <div class="stat-row"><span class="k">experience</span><span class="v">7 years</span></div>
+      <div class="stat-row"><span class="k">domain</span><span class="v">Infra / Databases</span></div>
+      <div class="stat-row"><span class="k">degree</span><span class="v">BSc (Engg.), ECE — 2017</span></div>
+      <div class="stat-row"><span class="k">since</span><span class="v">2019 — present</span></div>
+    </div>
+  </section>
+
+  <section id="career">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Career &amp; education</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item current">
+        <p class="tl-date">2024 — 2026</p>
+        <p class="tl-title">Database Administrator</p>
+        <p class="tl-org">LM Ericsson Bangladesh Limited</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">2023 — 2024</p>
+        <p class="tl-title">Senior Support Engineer (Database)</p>
+        <p class="tl-org">LM Ericsson Bangladesh Limited</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">2022 — 2023</p>
+        <p class="tl-title">Infra Operations Engineer (Database)</p>
+        <p class="tl-org">LM Ericsson Bangladesh Limited</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">2021 — 2022</p>
+        <p class="tl-title">Infra Operations Engineer</p>
+        <p class="tl-org">LM Ericsson Bangladesh Limited</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">2019 — 2021</p>
+        <p class="tl-title">Junior Infra Operations Engineer</p>
+        <p class="tl-org">LM Ericsson Bangladesh Limited</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">2013 — 2017</p>
+        <p class="tl-title">BSc (Engineering), Electronics &amp; Communication Engineering</p>
+        <p class="tl-org">Hajee Mohammad Danesh Science and Technology University</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Skills &amp; expertise</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-cell">
+        <p class="skill-cat">SYSTEMS / LINUX</p>
+        <div class="skill-tags">
+          <span>RedHat</span><span>Rocky Linux</span><span>CentOS</span><span>Oracle Linux</span><span>Solaris</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">DATABASES</p>
+        <div class="skill-tags">
+          <span>MariaDB</span><span>MySQL</span><span>Oracle</span><span>MSSQL</span><span>ProgressDB</span><span>Cassandra</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">AUTOMATION / MONITORING</p>
+        <div class="skill-tags">
+          <span>Bash scripting</span><span>Automation</span><span>Grafana</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">PROGRAMMING &amp; WEB</p>
+        <div class="skill-tags">
+          <span>C</span><span>Java</span><span>Python</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:mdsurujhossain14@gmail.com">
+        <p class="contact-k">EMAIL</p>
+        <p class="contact-v">mdsurujhossain14@gmail.com</p>
+      </a>
+      <a class="contact-card" href="tel:+8801786905073">
+        <p class="contact-k">PHONE</p>
+        <p class="contact-v">01786905073</p>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/md-suruj-hossain-89936418a/" target="_blank" rel="noopener">
+        <p class="contact-k">LINKEDIN</p>
+        <p class="contact-v">in/md-suruj-hossain</p>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Md. Suruj Hossain</span>
+  <span>Office of the Deputy Commissioner, Naogaon</span>
+</footer>
+
+</body>
+</html>
